@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     patch "/artists/:id" => "artists#update"
     delete "/artists/:id" => "artists#destroy"
   
-    get "/categorys" => "categorys#index"
+    get "/categories" => "categories#index"
     get "/categories/new" => "categories#new"
     post "/categories" => "categories#create"
     get "/categories/:id" => "categories#show"

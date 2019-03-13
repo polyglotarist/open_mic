@@ -1,1 +1,1 @@
-json.array! @categories, "category", as: :category
+json.array! @categories, partial: "category", as: :category

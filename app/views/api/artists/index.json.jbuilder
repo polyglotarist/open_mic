@@ -1,1 +1,1 @@
-json.array! @artists, "artist", as: :artist
+json.array! @artists, partial: "artist", as: :artist

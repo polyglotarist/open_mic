@@ -3,9 +3,9 @@ class Api::ArtistsController < ApplicationController
     @artists = Artist.all
     search_terms = params[:search]
     if search_terms
-      @artist = @artist.where("name iLIKE ?", "%#{search_terms}%")
+      @artist = @artist.where("title iLIKE ?", "%#{search_terms}%")
     end
-    @artists = @artists.order_by(id: asc)
+    @artists = @artists
     render 'index.json.jbuilder'
   end
 
