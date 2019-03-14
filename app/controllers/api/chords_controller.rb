@@ -4,10 +4,6 @@ class Api::ChordsController < ApplicationController
     render 'index.json.jbuilder'
   end
 
-  def new
-    
-  end
-
   def create
     @chord = Chord.new(
                         note = params[:note],
@@ -25,10 +21,6 @@ class Api::ChordsController < ApplicationController
     @chord = Chord.find(params[:id])
     render 'show.json.jbuilder'
 
-  end
-
-  def edit
-    
   end
 
   def update
