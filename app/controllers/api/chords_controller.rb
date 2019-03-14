@@ -1,6 +1,6 @@
 class Api::ChordsController < ApplicationController
   def index
-    @chord = Chord.all
+    @chords = Chord.all
     render 'index.json.jbuilder'
   end
 

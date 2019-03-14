@@ -1,1 +1,1 @@
-json.partial! @chords, "chord", as: :chord
+json.partial! @chord, partial: "chord", as: :chord
