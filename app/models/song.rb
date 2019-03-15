@@ -7,13 +7,12 @@ class Song < ApplicationRecord
   validates :lyrics, presence: true
 
   def formatted_lyrics
-     lyrics.split(':')
-  end
-
-  def formatted_chords
-    chords.each do |chord|
-      puts chord.note
+    result = lyrics.split(':')
+    chords_list = []
+    result.length.times do |i|
+      chords_list << "G          C             D"
     end
+    chords_list.zip(result)
   end
 end
 
