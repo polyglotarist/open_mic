@@ -1,5 +1,8 @@
-# json.id song.id
-# json.chords song.formatted_chords
+json.id song.id
 json.title song.title
-json.lyrics song.formatted_lyrics
+json.lyrics song.lyrics
+
+json.formatted do 
+  json.lyrics song.formatted_lyrics
+end
   

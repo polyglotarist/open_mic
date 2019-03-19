@@ -7,25 +7,24 @@ class Song < ApplicationRecord
   validates :lyrics, presence: true
 
   def formatted_lyrics
-    result = lyrics.split(':')
-    chords_list = []
-    result.length.times do |i|
-      chords_list << "G          C             D"
+    split_lyrics = lyrics.split(':')
+    longest_line = split_lyrics[0]
+    split_lyrics.each do |line|
+      if line.length > longest_line.length
+        longest_line = line
+      end
     end
-    chords_list.zip(result)
+    
+    split_lyrics_length = split_lyrics.length
+    chord_strings = []
+    split_lyrics_length.times do 
+      chord_strings << " "*longest_line.length
+    end
+
+    chords.each do |chord|
+      chord_strings[chord.row].insert(chord.location, chord.note)
+    end
+
+    chord_strings.zip(split_lyrics)
   end
 end
-
-# input
-# chords association method
-# [#<Chord id: 1, note: "A", row: 0, location: 0, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 2, note: "A", row: 0, location: 15, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 3, note: "A", row: 2, location: 15, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 4, note: "A", row: 3, location: 0, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 5, note: "A", row: 4, location: 0, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 6, note: "A", row: 4, location: 15, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 7, note: "A", row: 5, location: 0, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">, #<Chord id: 9, note: "Am", row: 0, location: 0, song_id: 1, created_at: "2019-03-14 19:35:46", updated_at: "2019-03-14 19:35:46">]
-
-# output
-# [
-#   "A        A       ",
-#   "G                ",
-#   "      D          ",
-#   "A        G       ",
-#   "D                ",
-#   "A                "
-# ]
