@@ -8,10 +8,6 @@ class Api::CategoriesController < ApplicationController
     render 'index.json.jbuilder'
   end
 
-  def new
-    
-  end
-
   def create
     @category = Category.new(
                               name: params[:name]
@@ -26,10 +22,6 @@ class Api::CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     render 'show.json.jbuilder'
-  end
-
-  def edit
-    
   end
 
   def update

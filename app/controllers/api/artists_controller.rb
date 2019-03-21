@@ -9,10 +9,6 @@ class Api::ArtistsController < ApplicationController
     render 'index.json.jbuilder'
   end
 
-  def new
-    
-  end
-
   def create
     @artist = Artist.new(
                           name: artist.name
@@ -24,9 +20,6 @@ class Api::ArtistsController < ApplicationController
     render 'show.json.jbuilder'
   end
 
-  def edit
-    
-  end
 
   def update
     @artist = Artist.find(params[:id])
