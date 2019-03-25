@@ -27,6 +27,11 @@ class Api::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     @category.name = params[:name] || @category.name
+    if @category.save
+      render 'show.json.jbuilder'
+    else
+      render json: {errors: @category.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy

@@ -6,9 +6,10 @@ class Api::ChordsController < ApplicationController
 
   def create
     @chord = Chord.new(
-                        note = params[:note],
-                        row = params[:row],
-                        location = params[:location]
+                        note: params[:note],
+                        row: params[:row],
+                        location: params[:location],
+                        song_id: params[:song_id]
                       )
     if @chord.save
       render 'show.json.jbuilder'
@@ -28,6 +29,7 @@ class Api::ChordsController < ApplicationController
     @chord.note = params[:note] || @chord.note
     @chord.row = params[:row] || @chord.row
     @chord.location = params[:location] || @chord.location
+    @chord.song_id = params[:song_id] || @chord.song_id
 
     if @chord.save
       render 'show.json.jbuilder'

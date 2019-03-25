@@ -11,8 +11,13 @@ class Api::ArtistsController < ApplicationController
 
   def create
     @artist = Artist.new(
-                          name: artist.name
+                          name: params[:name] 
                         )
+    if @artist.save
+      render 'show.json.jbuilder'
+    else
+      render json: { errors: @artist.errors.full_messages }, status: :unprocessable_entity
+    end
   end
   
   def show

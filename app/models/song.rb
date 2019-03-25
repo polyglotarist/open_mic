@@ -4,10 +4,12 @@ class Song < ApplicationRecord
   has_many :chords 
 
   validates :title, presence: true
-  validates :lyrics, presence: true
+  validates :lyrics, presence: true 
+  validates :chords_list, presence: true 
+
 
   def formatted_lyrics
-    split_lyrics = lyrics.split(':')
+    split_lyrics = lyrics.split("\n")
     longest_line = split_lyrics[0]
     split_lyrics.each do |line|
       if line.length > longest_line.length
@@ -26,5 +28,6 @@ class Song < ApplicationRecord
     end
 
     chord_strings.zip(split_lyrics)
+    # split_lyrics
   end
 end
