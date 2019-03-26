@@ -20,7 +20,7 @@ class Song < ApplicationRecord
     split_lyrics_length = split_lyrics.length
     chord_strings = []
     split_lyrics_length.times do 
-      chord_strings << " "*longest_line.length
+      chord_strings << (" " * longest_line.length)
     end
 
     chords.each do |chord|
