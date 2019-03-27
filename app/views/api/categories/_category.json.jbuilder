@@ -1,2 +1,2 @@
 json.id category.id
-json.name category.name
+json.name category.name 

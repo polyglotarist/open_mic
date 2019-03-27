@@ -36,9 +36,9 @@ class Api::SongsController < ApplicationController
     @song = Song.find(params[:id])
     @song.title = params[:title] || @song.title
     @song.lyrics = params[:lyrics] || @song.lyrics
+    @song.chords_list = params[:chrods_list] || @song.chords_list 
     @song.category_id = params[:category_id] || @song.category_id
     @song.artist_id = params[:artist_id] || @song.artist_id
-    @song.chords_list = params[:chrods_list] || @song.chords_list 
 
     if @song.save
       render 'show.json.jbuilder'

@@ -1,5 +1,5 @@
-json.id song.id
-json.title song.title
+json.id song.id 
+json.title song.title 
 json.lyrics song.lyrics
 json.chords_list song.chords_list
 json.chords song.chords
