@@ -5,6 +5,7 @@ class Api::SongsController < ApplicationController
     if search_terms
       @songs = @songs.where("title iLIKE ?", "%#{search_terms}%")
     end
+    @songs = @songs.order(:title => :ASC)
     render 'index.json.jbuilder'
   end
 

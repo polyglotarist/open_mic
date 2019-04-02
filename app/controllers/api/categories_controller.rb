@@ -5,6 +5,7 @@ class Api::CategoriesController < ApplicationController
     if search_terms
       @categories = @categories.where("title iLIKE ?", "%#{search_terms}%")
     end
+    @categories = @categories
     render 'index.json.jbuilder'
   end
 
