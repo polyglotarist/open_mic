@@ -3,7 +3,7 @@ class Api::CategoriesController < ApplicationController
     @categories = Category.all
     search_terms = params[:search]
     if search_terms
-      @categories = @categories.where("title iLIKE ?", "%#{search_terms}%")
+      @categories = @categories.where("name iLIKE ?", "%#{search_terms}%")
     end
     @categories = @categories
     render 'index.json.jbuilder'

@@ -3,7 +3,7 @@ class Api::ArtistsController < ApplicationController
     @artists = Artist.all
     search_terms = params[:search]
     if search_terms
-      @artist = @artist.where("title iLIKE ?", "%#{search_terms}%")
+      @artists = @artists.where("name iLIKE ?", "%#{search_terms}%")
     end
     @artists = @artists
     render 'index.json.jbuilder'
@@ -28,7 +28,7 @@ class Api::ArtistsController < ApplicationController
 
   def update
     @artist = Artist.find(params[:id])
-    artist.name = params[:name] || artist.name
+    @artist.name = params[:name] || @artist.name
 
     if @artist.save
       render 'show.json.jbuilder'
