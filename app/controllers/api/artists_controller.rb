@@ -6,7 +6,7 @@ class Api::ArtistsController < ApplicationController
       @artists = @artists.where("name iLIKE ?", "%#{search_terms}%")
     end
     @artists = @artists
-    render 'index.json.jbuilder'
+    render :index
   end
 
   def create
@@ -14,7 +14,7 @@ class Api::ArtistsController < ApplicationController
                           name: params[:name] 
                         )
     if @artist.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: { errors: @artist.errors.full_messages }, status: :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class Api::ArtistsController < ApplicationController
   
   def show
     @artist = Artist.find(params[:id])
-    render 'show.json.jbuilder'
+    render :show
   end
 
 
@@ -31,7 +31,7 @@ class Api::ArtistsController < ApplicationController
     @artist.name = params[:name] || @artist.name
 
     if @artist.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: {errors: @artist.errors.full_messages }, status: :unprocessable_entity
     end

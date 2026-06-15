@@ -6,7 +6,7 @@ class Api::SongsController < ApplicationController
       @songs = @songs.where("title iLIKE ?", "%#{search_terms}%")
     end
     @songs = @songs.order(:title => :ASC)
-    render 'index.json.jbuilder'
+    render :index
   end
 
   def create 
@@ -21,7 +21,7 @@ class Api::SongsController < ApplicationController
                     )
 
     if @song.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: { errors: @song.errors.full_messages }, status: :unprocessable_entity 
     end
@@ -42,7 +42,7 @@ class Api::SongsController < ApplicationController
     @song.artist_id = params[:artist_id] || @song.artist_id
 
     if @song.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: { errors: @song.errors.full_messages }, status: :unprocessable_entity
     end

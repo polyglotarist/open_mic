@@ -6,7 +6,7 @@ class Api::CategoriesController < ApplicationController
       @categories = @categories.where("name iLIKE ?", "%#{search_terms}%")
     end
     @categories = @categories
-    render 'index.json.jbuilder'
+    render :index
   end
 
   def create
@@ -14,7 +14,7 @@ class Api::CategoriesController < ApplicationController
                               name: params[:name]
                             )
     if @category.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: { errors: @category.errors.full_messages }, status: :unprocessable_entity
     end
@@ -22,14 +22,14 @@ class Api::CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id])
-    render 'show.json.jbuilder'
+    render :show
   end
 
   def update
     @category = Category.find(params[:id])
     @category.name = params[:name] || @category.name
     if @category.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: {errors: @category.errors.full_messages }, status: :unprocessable_entity
     end

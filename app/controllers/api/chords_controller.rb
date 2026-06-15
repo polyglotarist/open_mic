@@ -1,7 +1,7 @@
 class Api::ChordsController < ApplicationController
   def index
     @chords = Chord.all
-    render 'index.json.jbuilder'
+    render :index
   end
 
   def create
@@ -12,7 +12,7 @@ class Api::ChordsController < ApplicationController
                         song_id: params[:song_id]
                       )
     if @chord.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: { errors: @chord.errors.full_messages }, status: :unprocessable_entity
     end
@@ -20,7 +20,7 @@ class Api::ChordsController < ApplicationController
   
   def show
     @chord = Chord.find(params[:id])
-    render 'show.json.jbuilder'
+    render :show
 
   end
 
@@ -32,7 +32,7 @@ class Api::ChordsController < ApplicationController
     @chord.song_id = params[:song_id] || @chord.song_id
 
     if @chord.save
-      render 'show.json.jbuilder'
+      render :show
     else
       render json: { errors: @chord.errors.full_messages }, status: :unprocessable_entity
     end
